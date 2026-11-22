@@ -1,0 +1,10 @@
+# Local reference files
+/vendor/
+
+# macOS metadata
+.DS_Store
+
+# Local extension packages and signing keys
+/chat-turn-rail-*.zip
+*.crx
+*.pem

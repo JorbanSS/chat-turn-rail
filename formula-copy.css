@@ -1,0 +1,79 @@
+:where(.katex, mjx-container, .MathJax, .MathJax_SVG) {
+  transition: background-color 160ms ease, box-shadow 160ms ease;
+}
+
+[data-ctr-formula-copy] {
+  cursor: copy;
+  background-color: light-dark(#087f7619, #4bcbb927);
+  box-shadow: 0 0 0 2px light-dark(#087f7652, #4bcbb969);
+  border-radius: 4px;
+}
+
+.katex-display {
+  box-sizing: border-box;
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  overflow-x: auto;
+}
+
+.katex-display > .katex {
+  box-sizing: border-box;
+  /* Center short formulas and give long ones a scrollable start and end. */
+  inline-size: max-content;
+  min-inline-size: 100%;
+  max-inline-size: none;
+  padding: 3px 5px;
+  overflow: visible;
+}
+
+.katex-display > .katex[data-ctr-formula-copy] {
+  box-shadow: inset 0 0 0 2px light-dark(#087f7652, #4bcbb969);
+}
+
+#ctr-formula-feedback {
+  position: fixed;
+  z-index: 60;
+  margin: 0;
+  padding: 4px 8px;
+  border: 1px solid light-dark(#c8d5d3, #465754);
+  border-radius: 5px;
+  color: light-dark(#203330, #f0f8f7);
+  background: light-dark(#f6faf9, #22302e);
+  box-shadow: 0 2px 8px #0002;
+  color-scheme: light dark;
+  font: 12px/1.5 system-ui, sans-serif;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  translate: 0 3px;
+  transition: opacity 150ms ease, translate 150ms ease;
+}
+
+#ctr-formula-feedback[data-visible] {
+  opacity: 1;
+  translate: 0 0;
+}
+
+#ctr-formula-announcement {
+  position: fixed;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where(.katex, mjx-container, .MathJax, .MathJax_SVG) {
+    transition: none;
+  }
+
+  #ctr-formula-feedback {
+    translate: none;
+    transition: opacity 100ms linear;
+  }
+
+  #ctr-formula-feedback[data-visible] {
+    translate: none;
+  }
+}

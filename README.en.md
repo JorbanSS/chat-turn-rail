@@ -1,47 +1,44 @@
 # Chat Turn Rail
 
-[简体中文](README.md) · English
+[简体中文](README.md) · English · [Download the latest release](https://github.com/JorbanSS/chat-turn-rail/releases/latest)
 
-A Chrome extension that adds prompt navigation inside **Chat and Work** conversations on the ChatGPT website. Hover to preview a prompt, click to jump to it, or search the turn list.
+A Chrome extension for **Chat and Work** on the ChatGPT website. Preview, search, and jump to earlier prompts from the conversation rail, or click a rendered formula to copy its LaTeX source.
 
-## Installation
+## Install
 
-1. On GitHub, select **Code → Download ZIP**, or download a release archive, then extract it.
-2. Open `chrome://extensions` in Chrome and enable **Developer mode**.
-3. Select **Load unpacked** and choose the folder containing `manifest.json`.
-4. Refresh ChatGPT and open a conversation with at least two user prompts.
+1. Download and extract a ZIP from [GitHub Releases](https://github.com/JorbanSS/chat-turn-rail/releases). You can also choose **Code → Download ZIP** on the repository page.
+2. Open `chrome://extensions` in Chrome and turn on **Developer mode**.
+3. Choose **Load unpacked** and select the folder containing `manifest.json`.
+4. Refresh any open ChatGPT pages.
 
-To upgrade, replace the files in the folder Chrome already loads. On the extensions page, select **Reload** on the **Chat Turn Rail** card, then refresh ChatGPT.
+> [!TIP]
+> To upgrade, extract the new files into the folder Chrome already loads. Select **Reload** on the Chat Turn Rail card, then refresh ChatGPT.
 
-## Usage
+## Use
 
-- **Preview and jump** · Hover over a marker on the right edge of the conversation to preview that prompt. Click the marker to jump to it.
-- **Search the list** · Click the number at the top of the rail and type a keyword. Press Enter to jump to the first result or Esc to close the list.
-- **Browse older turns** · The number counts prompts indexed since you opened the conversation. Indexed prompts stay in the list when ChatGPT unmounts off-screen messages. Select **Scroll up to older messages** to let the site load another batch. Reloading the page or switching conversations starts a new index.
-- **Set the rail background** · The rail background and border are transparent by default. Use the toolbar popup to change the preference. Saved choices carry over when you upgrade. The expanded list and hover previews use solid backgrounds.
+| Feature | How it works |
+| --- | --- |
+| Preview and jump | Hover over a marker on the right of the conversation to preview a prompt. Click to jump to that turn. The rail appears when the conversation has at least two user prompts. |
+| Search prompts | Open the list using the number at the top of the rail, then type a keyword. Press Enter to jump to the first result or Esc to close the list. |
+| Browse older turns | Select **Scroll up to older messages** to let ChatGPT load an earlier batch. The number counts prompts indexed since you opened the conversation. |
+| Copy LaTeX | Hover over a supported inline or display formula to highlight it and see a hint. Click to copy its LaTeX source. This also works in single-turn conversations. Scroll wide formulas horizontally to see both ends. |
+| Change the rail background | Open the extension from the Chrome toolbar to toggle **Transparent navigation rail**, which is on by default. |
 
-The rail follows the website’s light or dark theme and stays alongside the transcript in Work’s split view. Narrow windows keep the count button and hide individual markers.
+The rail follows the page theme and stays beside the conversation in Work’s split view. In narrow windows, use the number button to open the list.
 
 ## Permissions and privacy
 
-The extension runs on ChatGPT pages. It reads prompts from the current conversation and holds its index in memory. Browser storage is used only for the transparency preference. The extension makes no network requests.
+The extension runs only on ChatGPT pages and builds an in-memory index of prompts in the current conversation. Clicking a formula writes its LaTeX to the system clipboard. Browser storage holds only the rail background preference. The extension makes no network requests.
 
-## Development
+## Local development
 
-The extension uses Manifest V3 and plain JavaScript. Load the repository root directly in Chrome.
+The extension uses Manifest V3 and plain JavaScript. Load the project root in Chrome without a build step.
 
-| File | Purpose |
-| --- | --- |
-| `manifest.json` | Site matches, permissions, and toolbar entry |
-| `navigator.js` | Prompt indexing, navigation, and list interactions |
-| `styles.js` | Rail, list, and preview styles |
-| `defaults.js` | Defaults shared by the content script and popup |
-| `settings.html`, `settings.js` | Toolbar settings popup |
+- [`manifest.json`](manifest.json) defines site matches, version, and permissions.
+- [`navigator.js`](navigator.js) and [`styles.js`](styles.js) handle turn indexing and navigation.
+- [`formula-copy.js`](formula-copy.js) and [`formula-copy.css`](formula-copy.css) handle formula copying and feedback.
+- [`settings.html`](settings.html), [`settings.js`](settings.js), and [`defaults.js`](defaults.js) handle toolbar settings.
 
-The extension relies on ChatGPT’s page structure, which may change. Current verification covers simulated Chat, Work, and virtualized conversation layouts in Chromium.
+The extension depends on ChatGPT’s message and formula markup. Report recognition or layout issues on [GitHub Issues](https://github.com/JorbanSS/chat-turn-rail/issues).
 
-Chat Turn Rail is an independently maintained extension inspired by ChatGPT’s long-conversation outline and Codex’s turn navigation. [ChatGPT release notes](https://help.openai.com/en/articles/6825453-chatgpt-release-notes#june-8-2026)
-
-## License
-
-[MIT](LICENSE)
+[MIT license](LICENSE)
