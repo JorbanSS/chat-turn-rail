@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Chat Turn Rail</title>
+    <style>
+      :root { color-scheme: light dark; font: 13px/1.45 system-ui, sans-serif; }
+      body { min-width: 230px; margin: 0; padding: 14px; background: Canvas; color: CanvasText; }
+      h1 { margin: 0 0 10px; font-size: 14px; font-weight: 650; }
+      label {
+        display: flex; align-items: center; justify-content: space-between; gap: 12px;
+        padding: 8px 0; cursor: pointer;
+      }
+      input { margin: 0; width: 16px; height: 16px; }
+      p { margin: 4px 0 0; }
+    </style>
+  </head>
+  <body>
+    <h1>Chat Turn Rail</h1>
+    <label>
+      <span id="label">Transparent navigation rail</span>
+      <input id="transparent-rail" type="checkbox" disabled>
+    </label>
+    <p id="status" role="status" hidden></p>
+    <script src="defaults.js"></script>
+    <script src="settings.js"></script>
+  </body>
+</html>

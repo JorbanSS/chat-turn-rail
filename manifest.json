@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Chat Turn Rail",
+  "version": "1.3.0",
+  "description": "Preview, search, and jump to your prompts in ChatGPT Chat and Work conversations.",
+  "permissions": ["storage"],
+  "action": {
+    "default_title": "Chat Turn Rail",
+    "default_popup": "settings.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://chatgpt.com/*", "https://chat.openai.com/*"],
+      "exclude_matches": ["https://chatgpt.com/codex*"],
+      "js": ["defaults.js", "styles.js", "navigator.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
